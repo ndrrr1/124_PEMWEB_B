@@ -1,0 +1,288 @@
+{
+  "info": {
+    "_postman_id": "84d6f605-ca2f-4994-a6c3-4e1c73950f53",
+    "name": "Inventra - Express Prisma Neon",
+    "description": "Jalankan berurutan 01–07. Semua URL dan kode sudah terisi. Setelah DELETE, alur dapat diulang dari POST. Jika POST 409, hapus DEMO-001 lewat web atau kirim request 06 dahulu.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "noauth"
+  },
+  "item": [
+    {
+      "id": "fd794ee9-2c8a-4d99-937c-126641bdd53e",
+      "name": "01 - GET seluruh barang",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/barang",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "34150006-a633-4aba-9a7b-80cc582fa97c",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "id": "f5ba86e6-78a0-4669-ad87-1b1cc6dfb1a0",
+      "name": "02 - POST tambah barang",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"kode\": \"DEMO-001\",\n  \"nama\": \"Mouse Wireless Demo\",\n  \"kategori\": \"Elektronik\",\n  \"stok\": 10,\n  \"harga\": 85000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/barang",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "0078cdf2-8859-4eda-b378-fe564f4c9139",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 201', function () { pm.response.to.have.status(201); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "id": "f5f03179-5165-421f-b81d-f41087ea6ebe",
+      "name": "03 - GET detail hasil POST",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/barang/DEMO-001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang",
+            "DEMO-001"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "850e49e2-fb3f-433e-8868-1abcbe609947",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "id": "fc9a9800-5028-45a6-a5ab-38c0ad212a8d",
+      "name": "04 - PUT edit barang",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"kode\": \"DEMO-001\",\n  \"nama\": \"Mouse Wireless Demo Revisi\",\n  \"kategori\": \"Elektronik\",\n  \"stok\": 15,\n  \"harga\": 95000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/barang/DEMO-001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang",
+            "DEMO-001"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "995e6de3-b4f5-4710-a513-1421a042829a",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "id": "0e82e6b9-4f6a-4c74-99ac-b0ef9dc6da04",
+      "name": "05 - GET detail hasil PUT",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/barang/DEMO-001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang",
+            "DEMO-001"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "57258fff-c402-4926-aa7a-e093c73c239b",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "id": "5ac2b677-0d6f-4641-a09b-8de05e88df27",
+      "name": "06 - DELETE hapus barang",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/api/barang/DEMO-001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang",
+            "DEMO-001"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "c8af86ea-cefd-4530-9e39-d5998f970e8c",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 200', function () { pm.response.to.have.status(200); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    },
+    {
+      "id": "e055cdb7-cf2c-4b33-b041-943ea643c2e1",
+      "name": "07 - GET sesudah DELETE (404 sesuai)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/barang/DEMO-001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "barang",
+            "DEMO-001"
+          ],
+          "query": [],
+          "variable": []
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a8f05d81-7dd8-4c42-9446-b8fe6db839b9",
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP 404', function () { pm.response.to.have.status(404); });"
+            ]
+          }
+        }
+      ],
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#176747" />
+    <meta name="description" content="Daftar dan persediaan barang." />
+    <title>Inventra | Inventaris Barang</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="/">
+          <svg class="icon"><use href="/icons.svg#box"></use></svg>Inventra
+        </a>
+        <span class="header-label">Inventaris</span>
+      </div>
+    </header>
+    <main>
+      <div class="page-heading">
+        <h1>Data barang</h1>
+        <button class="button primary" id="addButton">
+          <svg class="icon"><use href="/icons.svg#plus"></use></svg>Tambah barang
+        </button>
+      </div>
+      <dl class="summary" aria-label="Ringkasan barang">
+        <div><dt>Jenis barang</dt><dd id="totalBarang">—</dd></div>
+        <div><dt>Total stok</dt><dd id="totalStok">—</dd></div>
+        <div><dt>Nilai persediaan</dt><dd id="totalNilai">—</dd></div>
+      </dl>
+      <section class="inventory" aria-label="Daftar barang">
+        <div class="toolbar">
+          <label class="search-field">
+            <svg class="icon"><use href="/icons.svg#search"></use></svg>
+            <input id="search" type="search" placeholder="Cari nama atau kode…" aria-label="Cari barang" />
+          </label>
+          <select id="categoryFilter" aria-label="Filter kategori">
+            <option value="">Semua kategori</option>
+            <option>Alat Tulis</option><option>Elektronik</option>
+            <option>Aksesori</option><option>Perlengkapan</option>
+          </select>
+          <button class="button refresh" id="refreshButton" aria-label="Muat ulang" title="Muat ulang">
+            <svg class="icon"><use href="/icons.svg#refresh"></use></svg>
+          </button>
+        </div>
+        <div id="loadError" class="error" role="alert" hidden></div>
+        <div class="table-scroll" tabindex="0" aria-label="Tabel barang">
+          <table>
+            <thead><tr><th>Barang</th><th>Kategori</th><th class="number">Stok</th><th class="number">Harga satuan</th><th class="actions-title">Aksi</th></tr></thead>
+            <tbody id="barangTable"></tbody>
+          </table>
+        </div>
+        <div class="empty-state" id="emptyState" hidden>
+          <p id="emptyTitle">Belum ada barang.</p>
+          <button class="text-button" id="emptyAddButton">Tambah barang</button>
+        </div>
+        <footer class="table-footer"><span id="tableCount" aria-live="polite">Memuat data…</span></footer>
+      </section>
+    </main>
+
+    <dialog id="barangDialog" class="modal">
+      <form id="barangForm">
+        <header class="modal-heading">
+          <h2 id="formTitle">Tambah barang</h2>
+          <button type="button" class="icon-button" data-close="barangDialog" aria-label="Tutup form">
+            <svg class="icon"><use href="/icons.svg#close"></use></svg>
+          </button>
+        </header>
+        <div class="form-content">
+          <label class="field" for="kode">Kode barang
+            <input id="kode" name="kode" placeholder="ATK-003" required minlength="2" maxlength="30" pattern="[A-Za-z0-9][A-Za-z0-9\-]{1,29}" title="2–30 huruf, angka, atau tanda hubung" />
+          </label>
+          <label class="field" for="nama">Nama barang
+            <input id="nama" name="nama" placeholder="Buku Gambar A4" required minlength="2" maxlength="80" />
+          </label>
+          <label class="field" for="kategori">Kategori
+            <select id="kategori" name="kategori" required>
+              <option value="">Pilih kategori</option><option>Alat Tulis</option>
+              <option>Elektronik</option><option>Aksesori</option><option>Perlengkapan</option>
+            </select>
+          </label>
+          <div class="form-grid">
+            <label class="field" for="stok">Stok
+              <input id="stok" name="stok" type="number" min="0" max="100000" step="1" placeholder="0" required />
+            </label>
+            <label class="field" for="harga">Harga satuan (Rp)
+              <input id="harga" name="harga" type="number" min="0" max="1000000000" step="1" placeholder="25000" required />
+            </label>
+          </div>
+          <div id="formError" class="error" role="alert" hidden></div>
+        </div>
+        <footer class="modal-actions">
+          <button type="button" class="button secondary" data-close="barangDialog">Batal</button>
+          <button type="submit" class="button primary" id="saveButton">Simpan</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="deleteDialog" class="modal delete-modal">
+      <form id="deleteForm">
+        <header class="modal-heading"><h2>Hapus barang?</h2>
+          <button type="button" class="icon-button" data-close="deleteDialog" aria-label="Tutup konfirmasi"><svg class="icon"><use href="/icons.svg#close"></use></svg></button>
+        </header>
+        <div class="form-content">
+          <p id="deleteName"></p>
+          <p class="muted">Data yang dihapus tidak bisa dikembalikan.</p>
+          <div id="deleteError" class="error" role="alert" hidden></div>
+        </div>
+        <footer class="modal-actions">
+          <button type="button" class="button secondary" data-close="deleteDialog" autofocus>Batal</button>
+          <button type="submit" class="button danger" id="confirmDelete">Hapus</button>
+        </footer>
+      </form>
+    </dialog>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+  </body>
+</html>

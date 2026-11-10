@@ -1,0 +1,31 @@
+{
+  "name": "tugas-express-inventaris",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Inventaris barang dengan Express, Prisma, dan Neon PostgreSQL.",
+  "engines": {
+    "node": "^22.12.0 || ^24.0.0 || >=26.0.0"
+  },
+  "scripts": {
+    "start": "node scripts/check-env.mjs && node src/index.js",
+    "dev": "node scripts/check-env.mjs && node --watch src/index.js",
+    "demo": "node scripts/demo.mjs",
+    "setup": "node scripts/setup.mjs",
+    "check:env": "node scripts/check-env.mjs",
+    "db:generate": "prisma generate",
+    "db:migrate": "node scripts/check-env.mjs && prisma migrate dev",
+    "db:deploy": "node scripts/check-env.mjs && prisma migrate deploy",
+    "db:seed": "node scripts/check-env.mjs && prisma db seed",
+    "db:studio": "node scripts/check-env.mjs && prisma studio",
+    "test": "node --test --test-concurrency=1"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.10.1",
+    "@prisma/client": "7.10.1",
+    "dotenv": "17.2.3",
+    "express": "5.1.0",
+    "pg": "8.22.0"
+  },
+  "devDependencies": { "prisma": "7.10.1" }
+}

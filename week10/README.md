@@ -364,9 +364,3 @@ Ganti URL contoh dengan URL direct database uji. Berikan `TEST_DATABASE_URL` mel
 | Semua percobaan port gagal | Hentikan server lama atau ubah `PORT` di `.env` |
 | PUT ditolak | Kirim kelima field dan samakan kode body dengan kode URL |
 
-## Catatan
-
-Aplikasi belum menyediakan login, pembagian hak akses, atau riwayat stok masuk/keluar. API juga belum memiliki pencarian, filter, dan pagination di server.
-
-Isi identitas di bagian atas README dan pada `IDENTITAS.txt` sebelum pengumpulan. Saat mengunggah ke GitHub, sertakan `.env.example`, source code, migrasi, dan lockfile. `.env` serta `node_modules/` sudah diabaikan oleh `.gitignore`; dependency dapat dipasang kembali dengan `npm ci`.
-

@@ -1,6 +1,5 @@
 Nama: NDARU SATRIA TAMA  
 NRP: 5027251124
-Kelas: PEMROGRAMAN WEB B
 
 # Inventra — Inventaris Barang
 

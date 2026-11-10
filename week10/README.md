@@ -1,6 +1,6 @@
-**Nama:** ISI_NAMA_LENGKAP  
-**NRP:** ISI_NRP  
-**Kelas:** ISI_KELAS
+**Nama:** NDARU SATRIA TAMA 
+**NRP:** 5027251124  
+**Kelas:** PEMONGRAMAN WEB B
 
 # Inventra — Aplikasi Inventaris Barang
 
@@ -24,9 +24,6 @@ Dokumentasi ini disusun berdasarkan kode dalam folder `week10`. Isi identitas di
 - [Pengujian dengan Postman](#pengujian-dengan-postman)
 - [Perintah npm](#perintah-npm)
 - [Pengujian Otomatis](#pengujian-otomatis)
-- [Mengunggah ke GitHub](#mengunggah-ke-github)
-- [Pemecahan Masalah](#pemecahan-masalah)
-- [Batasan Implementasi](#batasan-implementasi)
 
 ## Fitur
 
@@ -524,55 +521,4 @@ Pengujian integrasi mencakup:
 - Pemisahan data aplikasi dari schema `public`.
 - Penolakan akses web ke file konfigurasi dan kode server.
 - Kelengkapan URL serta body pada collection Postman.
-
-## Mengunggah ke GitHub
-
-1. Isi Nama, NRP, dan Kelas pada bagian paling atas README.
-2. Lengkapi juga `IDENTITAS.txt`.
-3. Letakkan `README.md` sejajar dengan `package.json`.
-4. Sertakan source code, aset frontend, `prisma/`, `scripts/`, `tests/`, collection Postman, `package.json`, `package-lock.json`, dan `.env.example`.
-5. Pastikan `.env` dan `node_modules/` tidak ikut dilacak Git.
-
-Proyek sudah menyediakan `.gitignore` yang mengabaikan `node_modules/`, `dist/`, file log, `.env`, dan varian `.env.*`, dengan pengecualian `.env.example`.
-
-Untuk repositori GitHub baru yang masih kosong, jalankan dari root proyek. Ganti `USERNAME` dan `NAMA_REPOSITORY` dengan tujuan yang benar:
-
-```bash
-git init
-git add .
-git status
-git commit -m "Tambahkan proyek Inventra dan dokumentasi"
-git branch -M main
-git remote add origin https://github.com/USERNAME/NAMA_REPOSITORY.git
-git push -u origin main
-```
-
-Periksa daftar file pada `git status` sebelum commit. Pengguna lain memasang dependency melalui `npm ci` dan mengisi koneksi database mereka sendiri.
-
-## Pemecahan Masalah
-
-| Masalah | Langkah penyelesaian |
-| --- | --- |
-| `node` atau `npm` tidak ditemukan | Pasang Node.js beserta npm, lalu buka terminal baru |
-| Versi Node.js tidak sesuai | Gunakan Node.js yang memenuhi rentang pada bagian Teknologi |
-| `DATABASE_URL belum diisi` | Jalankan `npm run setup` atau isi URL asli pada `.env` |
-| Connection string masih contoh/tidak valid | Salin URL lengkap dari Neon; pastikan memuat user, password, host, dan nama database |
-| URL pooled dan direct tidak cocok | Gunakan koneksi dari branch dan database yang sama; kosongkan `DATABASE_URL_UNPOOLED` agar URL direct Neon diturunkan otomatis bila sesuai |
-| Login database gagal | Periksa kembali kredensial di connection string |
-| Database belum terjangkau | Periksa koneksi internet, hostname, port, dan ketersediaan database |
-| Tabel database belum siap | Jalankan `npm run db:deploy` atau ulangi `npm run demo` |
-| Prisma Client belum tersedia | Jalankan `npm run db:generate` |
-| Halaman tidak terbuka pada port 3000 | Gunakan alamat Website yang tercetak di terminal karena server dapat berpindah port |
-| Sepuluh port berurutan sedang dipakai | Hentikan proses server lama atau ubah `PORT` di `.env` |
-| POST menghasilkan 409 | Gunakan kode baru atau hapus barang demo yang masih ada |
-| PUT menghasilkan 400 | Kirim seluruh field wajib dan samakan kode body dengan kode URL |
-| Integrasi berstatus skip | Isi `TEST_DATABASE_URL` melalui environment terminal sebelum menjalankan tes |
-
-## Batasan Implementasi
-
-- Belum tersedia login, autentikasi API, atau pembagian hak akses.
-- Pencarian dan filter dilakukan di frontend; API belum menyediakan pagination.
-- Perubahan stok dilakukan melalui edit barang; belum tersedia riwayat transaksi stok masuk/keluar.
-- Data tersimpan di PostgreSQL sehingga aplikasi memerlukan database aktif.
-- Repository dalam arsip belum menyertakan file `LICENSE`.
 
